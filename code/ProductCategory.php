@@ -247,8 +247,10 @@ class ProductCategory_SearchFilter extends SearchFilter {
 
 		$this->model = $query->applyRelation($this->relation);
 		$value = $this->getValue();
+		
+		$gridfieldsearch = Controller::curr()->request->getVar('gridfield_relationsearch');
 
-		if ($value) {
+		if ($value && ! $gridfieldsearch) {
 
 			$query->innerJoin(
 				'ProductCategory_Products',
